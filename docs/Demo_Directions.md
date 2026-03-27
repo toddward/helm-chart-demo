@@ -40,7 +40,7 @@ echo "Using namespace prefix: $OC_USER"
 Create a personal namespace to keep your work isolated:
 
 ```bash
-oc new-project ${OC_USER}-helm-demo
+oc new-project helm-demo-${OC_USER}
 ```
 
 Confirm you're in the right project:
@@ -281,7 +281,7 @@ oc get all
 Delete your project:
 
 ```bash
-oc delete project ${OC_USER}-helm-demo
+oc delete project helm-demo-${OC_USER}
 ```
 
 ---
