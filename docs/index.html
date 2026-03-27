@@ -663,8 +663,8 @@ kind: <span class="string">Route</span>
       <div class="code-block animate-in"><span class="comment"># Log into the cluster</span>
 <span class="cmd">oc login</span> <span class="string">&lt;cluster-api-url&gt;</span> <span class="flag">-u</span> <span class="string">&lt;your-username&gt;</span>
 
-<span class="comment"># Capture your username for use throughout the demo</span>
-<span class="cmd">export</span> OC_USER=<span class="string">$(oc whoami)</span>
+<span class="comment"># Capture your username (sanitized for namespace naming)</span>
+<span class="cmd">export</span> OC_USER=<span class="string">$(oc whoami | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g')</span>
 
 <span class="comment"># Create your own project</span>
 <span class="cmd">oc new-project</span> <span class="string">${OC_USER}-helm-demo</span>

@@ -27,9 +27,11 @@ Verify you're logged in and capture your username for use throughout the demo:
 
 ```bash
 oc whoami
-export OC_USER=$(oc whoami)
-echo "Using username: $OC_USER"
+export OC_USER=$(oc whoami | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g')
+echo "Using namespace prefix: $OC_USER"
 ```
+
+> **Why the extra step?** Kubernetes namespace names must be valid DNS labels — lowercase letters, numbers, and hyphens only. Usernames like `kube:admin` or `John.Doe` would fail without sanitization.
 
 ---
 
