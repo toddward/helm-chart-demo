@@ -1,0 +1,11 @@
+apiVersion: v2
+name: httpd-demo
+description: A Helm chart for deploying Apache HTTPD on OpenShift using the UBI9 httpd-24 image
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - httpd
+  - openshift
+  - demo
+  - ubi9

@@ -1,0 +1,22 @@
+# Default values for httpd-demo
+
+replicaCount: 1
+
+image:
+  repository: registry.access.redhat.com/ubi9/httpd-24
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+route:
+  enabled: true
+
+resources:
+  limits:
+    memory: "256Mi"
+    cpu: "250m"
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
