@@ -24,6 +24,10 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: html-content
+              mountPath: /var/www/html
+              readOnly: true
           readinessProbe:
             httpGet:
               path: /
@@ -36,3 +40,7 @@ spec:
               port: {{ .Values.service.port }}
             initialDelaySeconds: 10
             periodSeconds: 20
+      volumes:
+        - name: html-content
+          configMap:
+            name: {{ .Release.Name }}-httpd-content

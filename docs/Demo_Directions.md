@@ -65,6 +65,7 @@ charts/httpd-demo/
 ├── values.yaml         # Default configuration values
 └── templates/
     ├── _helpers.tpl    # Reusable template snippets
+    ├── configmap.yaml  # HTML page content (mounted into the container)
     ├── deployment.yaml # Pod deployment spec
     ├── service.yaml    # ClusterIP service
     └── route.yaml      # OpenShift Route (exposes the app externally)
@@ -76,7 +77,7 @@ Open `values.yaml` and review the defaults:
 cat charts/httpd-demo/values.yaml
 ```
 
-Notice the key values you can override: `replicaCount`, `image.repository`, `image.tag`, `route.enabled`, and `resources`.
+Notice the key values you can override: `replicaCount`, `image.repository`, `image.tag`, `route.enabled`, `page.*`, and `resources`.
 
 ---
 
@@ -129,8 +130,8 @@ This layering is what makes a single chart reusable across environments. The sam
 Example:
 
 ```bash
-helm upgrade my-httpd ./charts/httpd-demo \
-  -f values-prod.yaml \
+helm template my-httpd ./charts/httpd-demo \
+  -f ./charts/httpd-demo/values.yaml \
   --set image.tag=2.4-ubi9
 ```
 
@@ -209,7 +210,7 @@ Grab your route URL:
 oc get route my-httpd-httpd -o jsonpath='{.spec.host}{"\n"}'
 ```
 
-Open that URL in your browser (it will be HTTPS via edge termination). You should see the **Apache HTTP Server Test Page** — proof that your application is running on OpenShift, deployed entirely via a Helm chart.
+Open that URL in your browser (it will be HTTPS via edge termination). You should see a styled page that says **"I'm Up!"** — proof that your application is running on OpenShift, deployed entirely via a Helm chart.
 
 You can also verify from the command line:
 

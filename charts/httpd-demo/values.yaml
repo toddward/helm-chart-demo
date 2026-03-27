@@ -13,6 +13,12 @@ service:
 route:
   enabled: true
 
+page:
+  title: "Helm Demo"
+  heading: "I'm"
+  accentWord: "Up!"
+  message: "Deployed with Helm on OpenShift."
+
 resources:
   limits:
     memory: "256Mi"

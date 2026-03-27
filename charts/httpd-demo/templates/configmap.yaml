@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-httpd-content
+  labels:
+    app: {{ .Release.Name }}-httpd
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{{ .Values.page.title }}</title>
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: 'Red Hat Display', 'Segoe UI', system-ui, sans-serif;
+          background: #151515;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+        }
+        .card {
+          text-align: center;
+          padding: 48px;
+        }
+        h1 {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+        .accent { color: #ee0000; }
+        p {
+          font-size: 1.125rem;
+          color: #c7c7c7;
+          margin-bottom: 8px;
+        }
+        .meta {
+          font-size: 0.875rem;
+          color: #a3a3a3;
+          margin-top: 24px;
+          font-family: 'Red Hat Mono', monospace;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <h1>{{ .Values.page.heading }} <span class="accent">{{ .Values.page.accentWord }}</span></h1>
+        <p>{{ .Values.page.message }}</p>
+        <div class="meta">Deployed via Helm on OpenShift</div>
+      </div>
+    </body>
+    </html>

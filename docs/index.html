@@ -479,7 +479,7 @@
     <!-- ============================================================ -->
     <!-- SLIDE 5: ARCHITECTURE — Chart anatomy -->
     <!-- ============================================================ -->
-    <div class="slide" data-notes="<strong>Walk through the structure:</strong><br>• <code>Chart.yaml</code> — metadata (name, version, description). Think of it like a package.json or spec file.<br>• <code>values.yaml</code> — the defaults. Every configurable knob lives here.<br>• <code>templates/</code> — standard Kubernetes YAML with Go template syntax ({{ .Values.xxx }}). Helm renders these at install time.<br><br>Point out that the chart in this demo has exactly these files — they can explore them after login.">
+    <div class="slide" data-notes="<strong>Walk through the structure:</strong><br>• <code>Chart.yaml</code> — metadata (name, version, description). Think of it like a package.json or spec file.<br>• <code>values.yaml</code> — the defaults. Every configurable knob lives here.<br>• <code>templates/</code> — standard Kubernetes YAML with Go template syntax ({{ .Values.xxx }}). Helm renders these at install time.<br>• <code>configmap.yaml</code> — provides the HTML page content. The Deployment mounts this ConfigMap as <code>/var/www/html</code> so Apache serves it.<br><br>Point out that the chart in this demo has exactly these files — they can explore them after login.">
       <div class="slide-label animate-in">—— ANATOMY</div>
       <h2 class="animate-in"><img class="rh-icon small" src="https://cdn.jsdelivr.net/npm/@rhds/icons@2.1.0/standard/blueprints.svg" alt=""> Inside a <span class="accent">Helm Chart</span></h2>
       <div class="arch-diagram animate-in">
@@ -502,6 +502,9 @@
         </div>
         <div class="arch-arrow">↓</div>
         <div class="arch-row">
+          <div class="arch-box">
+            <img class="rh-icon small" src="https://cdn.jsdelivr.net/npm/@rhds/icons@2.1.0/standard/paper-lined.svg" alt=""> configmap.yaml
+          </div>
           <div class="arch-box">
             <img class="rh-icon small" src="https://cdn.jsdelivr.net/npm/@rhds/icons@2.1.0/standard/container.svg" alt=""> deployment.yaml
           </div>
@@ -676,7 +679,7 @@ kind: <span class="string">Route</span>
     <!-- ============================================================ -->
     <!-- SLIDE 7: DEMO STEP 2 — helm install -->
     <!-- ============================================================ -->
-    <div class="slide" data-notes="<strong>This is the 'aha' moment.</strong> One command creates the Deployment, Service, and Route — everything needed for a running, externally-accessible application.<br><br>Compare this to the manual approach: <code>oc apply -f deployment.yaml && oc apply -f service.yaml && oc apply -f route.yaml</code> — more commands, more places to make a mistake.<br><br>The image used is <code>registry.access.redhat.com/ubi9/httpd-24</code>, which serves the default Apache test page on port 8080 and requires no auth to pull.">
+    <div class="slide" data-notes="<strong>This is the 'aha' moment.</strong> One command creates the Deployment, Service, and Route — everything needed for a running, externally-accessible application.<br><br>Compare this to the manual approach: <code>oc apply -f deployment.yaml && oc apply -f service.yaml && oc apply -f route.yaml</code> — more commands, more places to make a mistake.<br><br>The image used is <code>registry.access.redhat.com/ubi9/httpd-24</code> on port 8080 (no auth to pull). A ConfigMap provides a custom index.html so participants see an 'I'm Up!' page instead of a directory listing error.">
       <div class="slide-label animate-in">—— DEMO · STEP 2</div>
       <h2 class="animate-in">One Command to <span class="accent">Deploy Everything</span></h2>
       <div class="code-block animate-in"><span class="comment"># Install the chart — creates Deployment, Service, and Route</span>
@@ -687,7 +690,7 @@ kind: <span class="string">Route</span>
 
 <span class="comment"># Grab the route URL and open in browser</span>
 <span class="cmd">oc get route</span> my-httpd-httpd <span class="flag">-o</span> jsonpath=<span class="string">'{.spec.host}'</span></div>
-      <div class="body-text animate-in">Open the route URL in your browser — you should see the <strong style="color: var(--text-primary);">Apache HTTP Server Test Page</strong>, proof that your application is live on OpenShift.</div>
+      <div class="body-text animate-in">Open the route URL in your browser — you should see a styled page that says <strong style="color: var(--text-primary);">"I'm Up!"</strong>, proof that your application is live on OpenShift.</div>
     </div>
 
     <!-- ============================================================ -->
