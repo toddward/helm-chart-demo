@@ -394,6 +394,27 @@
     .notes-panel.visible { transform: translateX(0); }
     .notes-panel a { color: var(--accent-light); text-decoration: underline; }
 
+    /* === REPO LINK BUTTON === */
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--rh-space-sm, 8px);
+      padding: var(--rh-space-md, 16px) var(--rh-space-xl, 32px);
+      border: var(--rh-border-width-md, 2px) solid var(--accent);
+      border-radius: var(--rh-border-radius-default, 3px);
+      font-family: var(--font-mono);
+      font-size: var(--rh-font-size-body-text-lg, 1.125rem);
+      color: var(--accent);
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+      margin-top: var(--rh-space-xl, 32px);
+    }
+    .repo-link:hover {
+      background: var(--accent);
+      color: var(--text-primary);
+    }
+    .repo-link:hover .rh-icon { filter: var(--icon-filter); }
+
     /* === ANIMATIONS === */
     .animate-in { opacity: 0; transform: translateY(20px); }
     .slide.active .animate-in { animation: fadeSlideUp 0.6s ease-out forwards; }
@@ -794,7 +815,19 @@ kind: <span class="string">Route</span>
     </div>
 
     <!-- ============================================================ -->
-    <!-- SLIDE 13: THANK YOU -->
+    <!-- SLIDE: LIVE DEMO — Link to the repo -->
+    <!-- ============================================================ -->
+    <div class="slide" style="align-items: center; text-align: center;" data-notes="<strong>Transition to live demo.</strong> Click the link to open the GitHub repo in a new tab. Walk participants through cloning the repo and running the demo steps from Demo_Directions.md.<br><br>Repo: <a href='https://github.com/toddward/helm-chart-demo' target='_blank'>github.com/toddward/helm-chart-demo</a>">
+      <div class="slide-label animate-in">—— LIVE DEMO</div>
+      <h2 class="animate-in">Let's <span class="accent">Do This</span></h2>
+      <div class="body-text animate-in" style="text-align: center; max-width: 600px; align-self: center;">Clone the repo, log in to OpenShift, and follow along with the demo directions.</div>
+      <a href="https://github.com/toddward/helm-chart-demo/blob/main/docs/Demo_Directions.md" target="_blank" rel="noopener noreferrer" class="repo-link animate-in">
+        <img class="rh-icon small accent" src="https://cdn.jsdelivr.net/npm/@rhds/icons@2.1.0/social/github.svg" alt=""> Demo Directions on GitHub
+      </a>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE: THANK YOU -->
     <!-- ============================================================ -->
     <div class="slide thank-you-slide" data-notes="<strong>End of deck.</strong> Open the floor for questions.<br><br>Repo link: Share the GitHub repo URL so participants can clone the chart and Demo_Directions.md for reference.">
       <h1 class="animate-in">Thank <span class="accent">You</span></h1>
