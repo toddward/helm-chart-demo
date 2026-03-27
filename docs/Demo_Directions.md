@@ -55,7 +55,11 @@ oc project
 
 Take a look at the chart structure before deploying:
 
+```bash
+tree charts/httpd-demo
 ```
+
+```bash
 charts/httpd-demo/
 ├── Chart.yaml          # Chart metadata (name, version, description)
 ├── values.yaml         # Default configuration values
