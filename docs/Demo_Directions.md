@@ -23,10 +23,12 @@ oc login <cluster-api-url> -u <your-username> -p <your-password>
 
 > **Tip:** Your instructor will provide the cluster API URL. You can also copy the login command from the OpenShift web console under your username → **Copy login command**.
 
-Verify you're logged in:
+Verify you're logged in and capture your username for use throughout the demo:
 
 ```bash
 oc whoami
+export OC_USER=$(oc whoami)
+echo "Using username: $OC_USER"
 ```
 
 ---
@@ -36,7 +38,7 @@ oc whoami
 Create a personal namespace to keep your work isolated:
 
 ```bash
-oc new-project <your-firstname>-helm-demo
+oc new-project ${OC_USER}-helm-demo
 ```
 
 Confirm you're in the right project:
@@ -277,7 +279,7 @@ oc get all
 Delete your project:
 
 ```bash
-oc delete project <your-firstname>-helm-demo
+oc delete project ${OC_USER}-helm-demo
 ```
 
 ---
