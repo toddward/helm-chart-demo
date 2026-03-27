@@ -291,26 +291,6 @@ oc delete project helm-demo-${OC_USER}
 
 ---
 
-## Bonus — Helm Repositories
-
-Charts aren't just local folders — they can be packaged and published to repositories for team-wide reuse:
-
-```bash
-# Add a public chart repository
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-
-# Search for available charts
-helm search repo nginx
-
-# Pull a chart from an OCI registry
-helm pull oci://registry.example.com/charts/my-app --version 1.2.0
-```
-
-Discover thousands of community charts at [Artifact Hub](https://artifacthub.io). You can also host charts in your own OCI registry (Quay, Nexus, Harbor) and share them across projects.
-
----
-
 ## Recap
 
 In this demo you:
